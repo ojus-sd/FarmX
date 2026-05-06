@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="FarmX presentation deck: a direct farmer-to-buyer crop marketplace for fair pricing, transparent listings, and better market access."
+    />
+    <title>FarmX Presentation</title>
+    <style>
+      :root {
+        --bg: #0d0b06;
+        --panel: #12150f;
+        --panel-strong: #182016;
+        --line: #34402d;
+        --line-soft: rgba(255, 255, 255, 0.12);
+        --text: #f8f0de;
+        --muted: rgba(248, 240, 222, 0.68);
+        --soft: rgba(248, 240, 222, 0.42);
+        --green: #a6b98d;
+        --green-strong: #7f9b5b;
+        --gold: #d8b365;
+        --earth: #6f4f32;
+        --shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+      }
+
+      body {
+        margin: 0;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 12% 14%, rgba(127, 155, 91, 0.18), transparent 30%),
+          radial-gradient(circle at 84% 72%, rgba(216, 179, 101, 0.12), transparent 28%),
+          var(--bg);
+        color: var(--text);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      .deck {
+        position: relative;
+        display: grid;
+        min-height: 100vh;
+        padding: clamp(18px, 3vw, 36px);
+      }
+
+      .topbar {
+        position: fixed;
+        top: clamp(14px, 2vw, 28px);
+        left: clamp(18px, 3vw, 40px);
+        right: clamp(18px, 3vw, 40px);
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        pointer-events: none;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text);
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border: 1px solid rgba(166, 185, 141, 0.42);
+        background: rgba(166, 185, 141, 0.12);
+        color: var(--green);
+        font-size: 13px;
+      }
+
+      .counter {
+        border: 1px solid var(--line-soft);
+        background: rgba(18, 21, 15, 0.7);
+        padding: 8px 12px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        backdrop-filter: blur(14px);
+      }
+
+      .slides {
+        position: relative;
+        width: min(1180px, 100%);
+        height: min(720px, calc(100vh - 72px));
+        margin: auto;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(13, 11, 6, 0.72);
+        box-shadow: var(--shadow);
+      }
+
+      .slide {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+        gap: clamp(22px, 4vw, 54px);
+        align-items: center;
+        padding: clamp(58px, 8vw, 96px);
+        opacity: 0;
+        transform: translateX(11%);
+        visibility: hidden;
+        transition:
+          opacity 420ms ease,
+          transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
+          visibility 420ms ease;
+      }
+
+      .slide.previous {
+        transform: translateX(-11%);
+      }
+
+      .slide.active {
+        opacity: 1;
+        transform: translateX(0);
+        visibility: visible;
+        z-index: 2;
+      }
+
+      .slide.full {
+        grid-template-columns: 1fr;
+      }
+
+      .eyebrow {
+        margin: 0 0 18px;
+        color: var(--green);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+        max-width: 780px;
+        color: var(--text);
+        font-weight: 400;
+        line-height: 0.98;
+        letter-spacing: 0;
+      }
+
+      h1 {
+        font-size: clamp(48px, 8vw, 96px);
+      }
+
+      h2 {
+        font-size: clamp(38px, 5.4vw, 72px);
+      }
+
+      .lead {
+        max-width: 620px;
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: clamp(16px, 1.8vw, 22px);
+        line-height: 1.55;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 34px;
+      }
+
+      .pill {
+        border: 1px solid rgba(166, 185, 141, 0.34);
+        background: rgba(166, 185, 141, 0.1);
+        padding: 10px 13px;
+        color: var(--green);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .visual {
+        position: relative;
+        min-height: 390px;
+        overflow: hidden;
+        border: 1px solid rgba(166, 185, 141, 0.22);
+        background:
+          linear-gradient(145deg, rgba(127, 155, 91, 0.2), transparent 52%),
+          var(--panel);
+      }
+
+      .visual video,
+      .visual img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .visual video {
+        opacity: 0.8;
+      }
+
+      .visual::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(13, 11, 6, 0.7), transparent 60%);
+      }
+
+      .visual-caption {
+        position: absolute;
+        left: 22px;
+        right: 22px;
+        bottom: 22px;
+        z-index: 1;
+        color: var(--text);
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.4;
+      }
+
+      .problem-grid,
+      .feature-grid,
+      .roadmap {
+        display: grid;
+        gap: 14px;
+        margin-top: 32px;
+      }
+
+      .problem-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .card {
+        min-height: 150px;
+        border: 1px solid var(--line);
+        background: rgba(18, 21, 15, 0.86);
+        padding: 22px;
+      }
+
+      .card strong {
+        display: block;
+        color: var(--text);
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .card span,
+      .timeline p {
+        display: block;
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .metric-stack {
+        display: grid;
+        gap: 18px;
+      }
+
+      .metric {
+        border-left: 2px solid var(--green-strong);
+        padding-left: 18px;
+      }
+
+      .metric b {
+        display: block;
+        color: var(--text);
+        font-size: clamp(34px, 5vw, 58px);
+        font-weight: 400;
+        line-height: 1;
+      }
+
+      .metric span {
+        display: block;
+        margin-top: 7px;
+        color: var(--soft);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .flow {
+        position: relative;
+        display: grid;
+        gap: 14px;
+      }
+
+      .flow-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 16px;
+        align-items: start;
+        border: 1px solid var(--line);
+        background: rgba(18, 21, 15, 0.82);
+        padding: 18px;
+      }
+
+      .number {
+        display: grid;
+        width: 44px;
+        height: 44px;
+        place-items: center;
+        background: rgba(127, 155, 91, 0.18);
+        color: var(--green);
+        font-weight: 800;
+      }
+
+      .flow-step strong {
+        display: block;
+        font-size: 17px;
+      }
+
+      .flow-step p {
+        margin: 7px 0 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .timeline {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 34px;
+      }
+
+      .timeline article {
+        min-height: 175px;
+        border-top: 2px solid var(--green-strong);
+        background: rgba(18, 21, 15, 0.82);
+        padding: 22px;
+      }
+
+      .timeline strong {
+        color: var(--text);
+        font-size: 16px;
+      }
+
+      .arrows {
+        position: fixed;
+        left: clamp(18px, 3vw, 42px);
+        right: clamp(18px, 3vw, 42px);
+        bottom: clamp(14px, 2vw, 28px);
+        z-index: 6;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        pointer-events: none;
+      }
+
+      .arrow-btn {
+        display: grid;
+        width: 54px;
+        height: 54px;
+        place-items: center;
+        border: 1px solid rgba(166, 185, 141, 0.42);
+        background: rgba(18, 21, 15, 0.82);
+        color: var(--text);
+        cursor: pointer;
+        pointer-events: auto;
+        transition:
+          background 180ms ease,
+          border-color 180ms ease,
+          transform 180ms ease;
+      }
+
+      .arrow-btn:hover {
+        border-color: var(--green);
+        background: rgba(127, 155, 91, 0.22);
+        transform: translateY(-2px);
+      }
+
+      .arrow-btn:focus-visible,
+      .dot:focus-visible {
+        outline: 2px solid var(--green);
+        outline-offset: 4px;
+      }
+
+      .arrow-btn svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .dots {
+        display: flex;
+        justify-content: center;
+        gap: 9px;
+        pointer-events: auto;
+      }
+
+      .dot {
+        width: 36px;
+        height: 4px;
+        border: 0;
+        background: rgba(255, 255, 255, 0.24);
+        cursor: pointer;
+        padding: 0;
+        transition:
+          width 180ms ease,
+          background 180ms ease;
+      }
+
+      .dot.active {
+        width: 54px;
+        background: var(--green);
+      }
+
+      .hint {
+        position: fixed;
+        right: clamp(18px, 3vw, 40px);
+        bottom: clamp(78px, 7vw, 92px);
+        z-index: 5;
+        color: rgba(248, 240, 222, 0.42);
+        font-size: 12px;
+      }
+
+      @media (max-width: 900px) {
+        body {
+          overflow: auto;
+        }
+
+        .deck {
+          min-height: 100svh;
+          padding: 0;
+        }
+
+        .topbar {
+          position: sticky;
+          top: 0;
+          left: 0;
+          right: 0;
+          padding: 14px 16px;
+          background: rgba(13, 11, 6, 0.82);
+          backdrop-filter: blur(14px);
+        }
+
+        .slides {
+          width: 100%;
+          height: calc(100svh - 70px);
+          min-height: 680px;
+          border-left: 0;
+          border-right: 0;
+        }
+
+        .slide,
+        .slide.full {
+          grid-template-columns: 1fr;
+          align-content: center;
+          padding: 74px 24px 112px;
+        }
+
+        .visual {
+          min-height: 220px;
+        }
+
+        .problem-grid,
+        .feature-grid,
+        .timeline {
+          grid-template-columns: 1fr;
+        }
+
+        .timeline article,
+        .card {
+          min-height: auto;
+        }
+
+        .hint {
+          display: none;
+        }
+
+        .arrows {
+          bottom: 16px;
+        }
+
+        .arrow-btn {
+          width: 48px;
+          height: 48px;
+        }
+
+        .dots {
+          gap: 6px;
+        }
+
+        .dot {
+          width: 22px;
+        }
+
+        .dot.active {
+          width: 34px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="deck" aria-label="FarmX presentation">
+      <div class="topbar">
+        <div class="brand" aria-label="FarmX">
+          <span class="brand-mark">FX</span>
+          <span>FarmX</span>
+        </div>
+        <div class="counter" aria-live="polite">
+          <span id="currentSlide">01</span> / <span id="totalSlides">05</span>
+        </div>
+      </div>
+
+      <section class="slides" id="slides">
+        <article class="slide active" data-slide>
+          <div>
+            <p class="eyebrow">Direct Farmer Marketplace</p>
+            <h1>Better prices for farmers, direct access for buyers.</h1>
+            <p class="lead">
+              FarmX is a modern crop marketplace where farmers publish produce
+              listings and buyers discover fresh inventory with clear origin,
+              quantity, and price details.
+            </p>
+            <div class="actions">
+              <span class="pill">Fair pricing</span>
+              <span class="pill">Verified listings</span>
+              <span class="pill">Fast discovery</span>
+            </div>
+          </div>
+          <figure class="visual" aria-label="Farm field video">
+            <video src="hero.mp4" autoplay muted loop playsinline></video>
+            <figcaption class="visual-caption">
+              Built for transparent agricultural trade across local and regional
+              markets.
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="slide full" data-slide>
+          <div>
+            <p class="eyebrow">The Market Gap</p>
+            <h2>Farmers produce value, but too much value leaks before market.</h2>
+            <p class="lead">
+              FarmX addresses three practical barriers that keep farmers from
+              reaching better buyers and keep buyers from trusting crop supply.
+            </p>
+            <div class="problem-grid">
+              <div class="card">
+                <strong>Middlemen pressure margins</strong>
+                <span>Direct listings reduce dependency on opaque resale chains.</span>
+              </div>
+              <div class="card">
+                <strong>Demand signals are limited</strong>
+                <span>Search and regional filters make inventory easier to discover.</span>
+              </div>
+              <div class="card">
+                <strong>Buyers need clarity</strong>
+                <span>Every card shows crop, location, price, quantity, and unit.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-slide>
+          <div>
+            <p class="eyebrow">How It Works</p>
+            <h2>A simple flow from crop listing to buyer request.</h2>
+            <p class="lead">
+              The product keeps the main workflow focused: publish inventory,
+              browse available produce, and start the purchase conversation.
+            </p>
+          </div>
+          <div class="flow" aria-label="FarmX workflow">
+            <div class="flow-step">
+              <span class="number">01</span>
+              <div>
+                <strong>Farmer publishes inventory</strong>
+                <p>Validated form fields prevent missing names, locations, prices, and quantities.</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <span class="number">02</span>
+              <div>
+                <strong>Buyer searches the marketplace</strong>
+                <p>Search works across crop names and regions, with filter controls for faster scanning.</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <span class="number">03</span>
+              <div>
+                <strong>Purchase request is sent</strong>
+                <p>Buyers express demand directly from the produce card without leaving the dashboard.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-slide>
+          <div>
+            <p class="eyebrow">Product Experience</p>
+            <h2>Professional dashboards, built for repeat marketplace use.</h2>
+            <p class="lead">
+              FarmX combines a trust-building landing page with focused farmer
+              and buyer portals that remain usable on desktop and mobile.
+            </p>
+            <div class="feature-grid">
+              <div class="card">
+                <strong>Persistent state</strong>
+                <span>Listings and selected role survive browser refreshes.</span>
+              </div>
+              <div class="card">
+                <strong>Responsive shell</strong>
+                <span>Dashboard navigation adapts cleanly to smaller screens.</span>
+              </div>
+            </div>
+          </div>
+          <div class="metric-stack">
+            <div class="metric">
+              <b>1.4M+</b>
+              <span>Farmers connected vision</span>
+            </div>
+            <div class="metric">
+              <b>99.8%</b>
+              <span>Faster transaction ambition</span>
+            </div>
+            <div class="metric">
+              <b>5</b>
+              <span>Core produce listings seeded</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide full" data-slide>
+          <div>
+            <p class="eyebrow">Roadmap</p>
+            <h2>From prototype marketplace to trusted agriculture network.</h2>
+            <p class="lead">
+              The current product proves the core interaction. The next phase
+              adds trust, payments, and operating intelligence around real trade.
+            </p>
+            <div class="timeline">
+              <article>
+                <strong>Identity</strong>
+                <p>Authentication, farmer profiles, buyer profiles, and verified accounts.</p>
+              </article>
+              <article>
+                <strong>Transactions</strong>
+                <p>Order tracking, status updates, payment flow, and purchase history.</p>
+              </article>
+              <article>
+                <strong>Trust</strong>
+                <p>Crop verification, ratings, quality notes, and transparent fulfillment details.</p>
+              </article>
+              <article>
+                <strong>Insights</strong>
+                <p>Demand trends, price analytics, inventory alerts, and regional performance views.</p>
+              </article>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <p class="hint">Use left and right arrow keys</p>
+
+      <nav class="arrows" aria-label="Slide controls">
+        <button class="arrow-btn" type="button" id="prevBtn" aria-label="Previous slide">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+
+        <div class="dots" id="dots" aria-label="Slide selector"></div>
+
+        <button class="arrow-btn" type="button" id="nextBtn" aria-label="Next slide">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M9 6l6 6-6 6" />
+          </svg>
+        </button>
+      </nav>
+    </main>
+
+    <script>
+      const slides = Array.from(document.querySelectorAll("[data-slide]"));
+      const dotsContainer = document.getElementById("dots");
+      const currentSlide = document.getElementById("currentSlide");
+      const totalSlides = document.getElementById("totalSlides");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      let index = 0;
+
+      totalSlides.textContent = String(slides.length).padStart(2, "0");
+
+      const dots = slides.map((_, slideIndex) => {
+        const dot = document.createElement("button");
+        dot.className = "dot";
+        dot.type = "button";
+        dot.setAttribute("aria-label", `Go to slide ${slideIndex + 1}`);
+        dot.addEventListener("click", () => showSlide(slideIndex));
+        dotsContainer.appendChild(dot);
+        return dot;
+      });
+
+      function showSlide(nextIndex) {
+        const previousIndex = index;
+        index = (nextIndex + slides.length) % slides.length;
+
+        slides.forEach((slide, slideIndex) => {
+          slide.classList.toggle("active", slideIndex === index);
+          slide.classList.toggle("previous", slideIndex < index);
+          slide.setAttribute("aria-hidden", slideIndex === index ? "false" : "true");
+        });
+
+        dots.forEach((dot, slideIndex) => {
+          dot.classList.toggle("active", slideIndex === index);
+          dot.setAttribute("aria-current", slideIndex === index ? "true" : "false");
+        });
+
+        currentSlide.textContent = String(index + 1).padStart(2, "0");
+
+        if (previousIndex !== index) {
+          const direction = index > previousIndex ? "next" : "previous";
+          document.documentElement.dataset.direction = direction;
+        }
+      }
+
+      prevBtn.addEventListener("click", () => showSlide(index - 1));
+      nextBtn.addEventListener("click", () => showSlide(index + 1));
+
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight") {
+          showSlide(index + 1);
+        }
+        if (event.key === "ArrowLeft") {
+          showSlide(index - 1);
+        }
+      });
+
+      showSlide(0);
+    </script>
+  </body>
+</html>

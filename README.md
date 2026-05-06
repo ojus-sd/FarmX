@@ -6,6 +6,8 @@ FarmX is a polished direct-to-market agricultural marketplace built with React a
 
 [Open FarmX on GitHub Pages](https://ojus-sd.github.io/FarmX/)
 
+[Open FarmX HTML Presentation](https://ojus-sd.github.io/FarmX/presentation.html)
+
 ## Features
 
 - Farmer portal for adding validated produce listings.
