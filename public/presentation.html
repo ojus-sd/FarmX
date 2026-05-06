@@ -240,6 +240,8 @@
 
       .problem-grid,
       .feature-grid,
+      .tech-grid,
+      .team-grid,
       .roadmap {
         display: grid;
         gap: 14px;
@@ -252,6 +254,14 @@
 
       .feature-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .tech-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .team-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
       .card {
@@ -276,6 +286,16 @@
         color: var(--muted);
         font-size: 14px;
         line-height: 1.55;
+      }
+
+      .card small {
+        display: inline-block;
+        margin-bottom: 14px;
+        color: var(--green);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
       }
 
       .metric-stack {
@@ -483,6 +503,8 @@
 
         .problem-grid,
         .feature-grid,
+        .tech-grid,
+        .team-grid,
         .timeline {
           grid-template-columns: 1fr;
         }
@@ -652,6 +674,69 @@
             <div class="metric">
               <b>5</b>
               <span>Core produce listings seeded</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide full" data-slide>
+          <div>
+            <p class="eyebrow">Tech Stack</p>
+            <h2>Modern frontend tools for a fast, responsive marketplace.</h2>
+            <p class="lead">
+              FarmX uses a lightweight React and Vite setup with Tailwind CSS
+              for styling, React Router for navigation, and GitHub Pages for
+              deployment.
+            </p>
+            <div class="tech-grid">
+              <div class="card">
+                <small>Frontend</small>
+                <strong>React.js</strong>
+                <span>Component-based UI for landing, role selection, and dashboards.</span>
+              </div>
+              <div class="card">
+                <small>Styling</small>
+                <strong>Tailwind CSS</strong>
+                <span>Responsive utility classes for a clean, consistent interface.</span>
+              </div>
+              <div class="card">
+                <small>Routing</small>
+                <strong>React Router</strong>
+                <span>Role-based navigation between farmer and buyer portals.</span>
+              </div>
+              <div class="card">
+                <small>Build & Deploy</small>
+                <strong>Vite + GitHub Pages</strong>
+                <span>Fast local development and automated static deployment.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide full" data-slide>
+          <div>
+            <p class="eyebrow">Team Roles</p>
+            <h2>Mock team structure for project ownership.</h2>
+            <p class="lead">
+              These roles are placeholders for now. Replace the names and
+              responsibilities with your actual team details before final
+              submission.
+            </p>
+            <div class="team-grid">
+              <div class="card">
+                <small>Team Member 1</small>
+                <strong>Frontend Developer</strong>
+                <span>Built React components, dashboard views, and responsive presentation UI.</span>
+              </div>
+              <div class="card">
+                <small>Team Member 2</small>
+                <strong>UI/UX Designer</strong>
+                <span>Defined visual direction, layout hierarchy, and user-friendly flows.</span>
+              </div>
+              <div class="card">
+                <small>Team Member 3</small>
+                <strong>Project & Research Lead</strong>
+                <span>Handled project brief, feature planning, testing, and documentation.</span>
+              </div>
             </div>
           </div>
         </article>
