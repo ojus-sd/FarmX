@@ -1,0 +1,42 @@
+export const initialCrops = [
+  {
+    id: 1,
+    name: 'Organic Wheat',
+    location: 'Punjab',
+    price: '2500',
+    quantity: '100',
+    unit: 'kg',
+  },
+  {
+    id: 2,
+    name: 'Basmati Rice',
+    location: 'Haryana',
+    price: '4000',
+    quantity: '50',
+    unit: 'kg',
+  },
+  {
+    id: 3,
+    name: 'Fresh Tomatoes',
+    location: 'Maharashtra',
+    price: '30',
+    quantity: '500',
+    unit: 'kg',
+  },
+  {
+    id: 4,
+    name: 'Alphonso Mangoes',
+    location: 'Maharashtra',
+    price: '800',
+    quantity: '20',
+    unit: 'lbs',
+  },
+  {
+    id: 5,
+    name: 'Mustard Seeds',
+    location: 'Rajasthan',
+    price: '5500',
+    quantity: '200',
+    unit: 'kg',
+  },
+];
