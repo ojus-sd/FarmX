@@ -42,14 +42,12 @@ FarmX provides a **direct digital marketplace** where:
 
   * Find nearby buyers/sellers for efficient trade
 
-* 📊 **Real-Time Demand Trends**
+* 📊 **Search & Filtering**
 
-  * Understand market demand and pricing
+   * Users can filter crops dynamically by:
 
-* 🌐 **Multi-Language Support**
-
-  * Designed for accessibility across regions
-
+     1)location
+     2) Crop Name
 ---
 
 ## Tech Stack
