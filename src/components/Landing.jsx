@@ -1,8 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import hero from "../assets/image2.png";
 import indiaMap from "../assets/india.png";
 
-const cycleCards = [
+const cards = [
   {
     title: "Low Farmer Income",
     description:
@@ -20,7 +19,7 @@ const cycleCards = [
   },
 ];
 
-const metrics = [
+const numbers = [
   { value: "1.4M+", label: "FARMERS CONNECTED" },
   { value: "₹2.8B+", label: "TRADE FACILITATED" },
   { value: "99.8%", label: "FASTER TRANSACTIONS" },
@@ -45,31 +44,13 @@ const footerColumns = [
   },
 ];
 
-const Landing = ({ setRole }) => {
-  const navigate = useNavigate();
-
-  const handleRoleSelect = (selectedRole) => {
-    if (setRole) {
-      setRole(selectedRole);
-    }
-
-    navigate(selectedRole === "farmer" ? "/farmer" : "/buyer");
-  };
-
-  const scrollToSection = (sectionId) => {
-    document.getElementById(sectionId)?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  };
-
+const Landing = ({ setPage, setRole }) => {
   return (
     <div className="min-h-screen bg-[#0d0b06] text-white font-[Inter]">
-      {/* HEADER */}
       <header className="sticky top-0 z-50 border-b border-white/10 bg-black/35 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
           <button
-            onClick={() => navigate("/")}
+            onClick={() => setPage("landing")}
             className="text-lg font-semibold tracking-tight text-[#dbe3cc] cursor-pointer"
           >
             FarmX
@@ -77,14 +58,20 @@ const Landing = ({ setRole }) => {
 
           <div className="flex items-center gap-2">
             <button
-              onClick={() => handleRoleSelect("farmer")}
+              onClick={() => {
+                setRole("farmer");
+                setPage("farmer");
+              }}
               className="rounded-sm border border-[#6f8f5a]/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[#d5dfc4] transition-colors hover:bg-[#6f8f5a] hover:text-[#0b1307] cursor-pointer"
             >
               Farmer
             </button>
 
             <button
-              onClick={() => handleRoleSelect("buyer")}
+              onClick={() => {
+                setRole("buyer");
+                setPage("buyer");
+              }}
               className="rounded-sm border border-[#6f8f5a]/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[#d5dfc4] transition-colors hover:bg-[#6f8f5a] hover:text-[#0b1307] cursor-pointer"
             >
               Buyer
@@ -94,7 +81,6 @@ const Landing = ({ setRole }) => {
       </header>
 
       <main>
-        {/* HERO */}
         <section className="relative overflow-hidden border-b border-white/5">
           <video
             className="absolute inset-0 h-full w-full object-cover"
@@ -130,7 +116,7 @@ const Landing = ({ setRole }) => {
 
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <button
-                  onClick={() => navigate("/role-selection")}
+                  onClick={() => setPage("role-selection")}
                   className="inline-flex items-center gap-3 bg-[#7f9b5b] px-6 py-3 text-sm font-medium text-[#0b1307] transition-transform duration-300 hover:-translate-y-0.5 cursor-pointer"
                 >
                   Explore Marketplace
@@ -138,19 +124,21 @@ const Landing = ({ setRole }) => {
                 </button>
 
                 <button
-                  onClick={() => scrollToSection("metrics")}
+                  onClick={() => {
+                    document.getElementById("metrics")?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  }}
                   className="px-1 py-3 text-sm font-medium text-white/78 transition-colors hover:text-white cursor-pointer"
                 >
                   View Impact
                 </button>
               </div>
             </div>
-
-            {/* RIGHT INFO CARDS */}
           </div>
         </section>
 
-        {/* CHALLENGES */}
         <section
           id="insights"
           className="border-b border-white/5 bg-[#120f08] px-6 py-20 lg:px-8"
@@ -175,7 +163,7 @@ const Landing = ({ setRole }) => {
             </div>
 
             <div className="mt-12 grid gap-5 md:grid-cols-3">
-              {cycleCards.map((card) => (
+              {cards.map((card) => (
                 <div
                   key={card.title}
                   className="min-h-[220px] border border-[#36422f] bg-[#11150f] p-6 transition-transform duration-300 hover:-translate-y-1"
@@ -197,9 +185,6 @@ const Landing = ({ setRole }) => {
           </div>
         </section>
 
-        {/* TOOLS */}
-
-        {/* METRICS */}
         <section id="metrics" className="bg-[#0f0b06] px-6 py-20 lg:px-8">
           <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div>
@@ -209,14 +194,14 @@ const Landing = ({ setRole }) => {
               </h2>
 
               <div className="mt-10 space-y-6 border-l border-[#7f9b5b]/50 pl-5">
-                {metrics.map((metric) => (
-                  <div key={metric.label}>
+                {numbers.map((item) => (
+                  <div key={item.label}>
                     <div className="text-3xl font-light text-white">
-                      {metric.value}
+                      {item.value}
                     </div>
 
                     <div className="mt-1 text-[10px] uppercase tracking-[0.35em] text-white/55">
-                      {metric.label}
+                      {item.label}
                     </div>
                   </div>
                 ))}
@@ -233,7 +218,6 @@ const Landing = ({ setRole }) => {
           </div>
         </section>
 
-        {/* FOOTER */}
         <footer
           id="footer"
           className="border-t border-white/5 bg-[#0d0b06] px-6 py-16 lg:px-8"
